@@ -2,7 +2,6 @@
 // there's a bio, education, work and projects objects
 var aboutme = "Currently reside in San Francisco.  I really enjoy doing things related to maps, bikes and sometimes computers. While in San Francisco I've taken a number of classes at CCSF including Geographic Informations Systems, Network Security, Design and Calculus.  I also like to spend time at <a class='simplink' href='https://noisebridge.net/wiki/Noisebridge'> Noisebridge</a> learning and trying to build and not break things. See some of my online projects below and get in touch if you'd like to discuss them or hire me to work on something."
 
-
 var bio = {
   name: "Matthew McKenna",
   role: "Digital Cartographer",
@@ -21,7 +20,7 @@ var bio = {
 
 
 // work data basically has a jobs array
-let work = {
+var work = {
   jobs:[],
   init:function(){
 
@@ -52,12 +51,14 @@ let work = {
     cof.employer = "Conservatory of Flowers";
     cof.location = "San Francisco";
     cof.years = "4 years";
-    cof.description = "Volunteered as a Jungle Guide (docent) for 2nd to 5th grade field tripts to the " +
+    cof.description = "Volunteered as a Jungle Guide (docent) for 2nd to 5th grade field trips to the " +
     "Conservatory of Flowers, which is a historical green house in Golden Gate Park.";
 
     cof.addtowork();
 
-    var pwc = new job("Intern", "PricewaterhouseCoopers LLP", "Sydney, Austrailia", "6 months", "Performed work at the consultant level for various teams including Corporate Social Responsibility auditing and writing material for publication.")
+    var pwc = new job("Intern", "PricewaterhouseCoopers LLP", "Sydney, Austrailia", "6 months", 
+    "Performed work at the consultant level for various teams including Corporate Social" + 
+    " Responsibility auditing and writing material for publication.")
 //    console.log(pwc)
     pwc.addtowork();
   //  console.log(cof)
@@ -72,18 +73,16 @@ work.init();
 
 
 var education = {"schools":[],
-                "onlineCourses":[
-                  {
+                  "onlineCourses":[{
                     "title":"JavaScript Basics",
                     "school":"Udacity",
                     "url":"https://www.udacity.com/course/ud804",
-                    "dates":"April 2015"
-                  },
-                  {
-                    "title":"Data Visualization and D3.js",
-                    "school":"Udacity",
-                    "dates":"Jan - Feb 2015",
-                    "url":"https://www.udacity.com/course/data-visualization-and-d3js--ud507"
+                    "dates":"April 2015"},
+                    {
+                      "title":"Data Visualization and D3.js",
+                      "school":"Udacity",
+                      "dates":"Jan - Feb 2015",
+                      "url":"https://www.udacity.com/course/data-visualization-and-d3js--ud507"
                     },
                     {
                       "title":"How to use Git and GitHub",
@@ -91,8 +90,7 @@ var education = {"schools":[],
                       "dates":"Jan 2015",
                       "url":"https://www.udacity.com/course/how-to-use-git-and-github--ud775"
                     }
-                  ]
-                };
+                  ]};
 
 
 
@@ -100,14 +98,12 @@ education.schools.push({"location":"San Francisco, CA"})
 education.schools[0]["name"] = 'City College of San Francisco';
 education.schools[0]["years"] = "2012-2013";
 education.schools[0]["degree"] = "GIS (Geographic Information Systems) Certification"
-education.schools[0]['uri'] = "https://www.ccsf.edu/"
-
 education.schools.push({"name":"University of Wisconsin",
-"location":"Madison, WI", "degree":"BA", "major":"International Studies", "years": "2004-2008", "uri": "https://www.wisc.edu/"})
+"location":"Madison, WI", "degree":"BA", "major":"International Studies", "years": "2004-2008"})
 //console.log(JSON.stringify(edu));
 
 
-var highschool = new school("American School Foundation of Mexico DF", "2002-2004", "High School Diploma", "Learned to speak and read spanish fairly well and partipated in a range of varsity sports as I attended high school in Mexico City for my junior and senior years of high school.", "Mexico DF, Mexico", "https://www.asf.edu.mx/about")
+var highschool = new school("American School Foundation of Mexico DF", "2002-2004", "High School Diploma", "Learned to speak and read spanish fairly well and partipated in a range of varsity sports as I attended high school in Mexico City for my junior and senior years of high school.", "Mexico DF, Mexico")
 
 
 education.schools.push(highschool)
@@ -128,7 +124,15 @@ var projects = {projects:[],
   init:function(){
 
 // showing the constructor function for projects if i want to use it
-// function Project(title, dates, description, url, images){
+// function Project(title, dates, description, url, images) { ... }
+
+  let sfpdmap = new Project( "SFPD incidents 3d Hex map", "2019-Present", 
+  "Using deck.gl (a fancy Uber made data viz library) to create a heatmap of SFPD Incident reports.",
+  "https://mpmckenna8.github.io/sfviz/?start_date=2020-05-01&end_date=2020-05-31", 
+  [{"url":"images/sfpd_crimes.jpg"}])
+
+  projects.projects.push( sfpdmap )
+
 
   var myBlocks = new Project("My bl.ocks",
   "2010-Present",
@@ -138,7 +142,7 @@ var projects = {projects:[],
   projects.projects.push(myBlocks)
 
   var ccsfMap = new Project("CCSF Campuses/buildings Map", "2015-2016", "A map to show and help people find out where all the City college of San Francisco Campuses and buildings are.",
-    "http://mpmckenna8.github.io/ccsfmapapp/site/", [] );
+    "http://mpmckenna8.github.io/ccsfmapapp/site/", [{"url":"images/ccsfmap.png"}] );
 
   //   ccsfMap.description = "A map to show and help people find out where all the City college of San Francisco Campuses and buildings are."
     console.log(ccsfMap)
@@ -150,8 +154,8 @@ var projects = {projects:[],
     "dates":"2015",
     "description":"A page where you can check out the districts for the upper and lower houses of the California State Congress.",
     "url":"http://secure-sands-4200.herokuapp.com/#/map",
-    "images":[{
-      "url":"images/CAmap.jpg"}
+    "images":[
+      {"url":"images/CAmap.jpg"}
       ]
     }
 
@@ -161,10 +165,10 @@ var projects = {projects:[],
     var maptimesSphVe =   {
         "title":"Maptimes Spherical Veronoi Map",
         "dates":"2015",
-        "description":"Pretty much copied a Joson Davies spherical veronoi inserting Maptimes for the points.",
+        "description":"Pretty much copied a Jason Davies spherical veronoi inserting Maptimes for the points.",
         "url":"http://mpmckenna8.github.io/d3prac/sphver/index.html",
         "images":[
-
+          {"url":"images/maptime_sphere.png"}
         ]
       };
 
@@ -205,6 +209,8 @@ var projects = {projects:[],
     projects.projects.push(bikeAccidentsMap)
 
     projects.projects.push(badgers);
+
+    console.log('inited projects but sfpd one not showing ups', projects.projects)
 
 
   }}
@@ -256,7 +262,9 @@ var view = {
 
        if(projectos[i].images.length > 0){
          for (image in projectos[i].images){
-           var formimage = HTMLprojectImage.replace(/%data%/g, projectos[i].images[image].url);
+           var formimage = HTMLprojectImage.replace(/%data%/g, projectos[i].images[image].url)
+              .replace('#', projectos[i].url);
+
            $(".project-entry:last").append(formimage)
           }
         }
@@ -326,9 +334,7 @@ var view = {
         edudiv.append(HTMLschoolStart);
 
         var hoo = schools[ble];
-
-        var name = HTMLschoolName.replace(/%data%/g, hoo.name).replace(/%linker%/g, hoo.uri);
-
+        var name = HTMLschoolName.replace(/%data%/g, hoo.name);
         var degree = HTMLschoolDegree.replace(/%data%/g, hoo.degree);
         var dates = HTMLschoolDates.replace(/%data%/g, hoo.years);
         var loca = HTMLschoolLocation.replace(/%data%/g, hoo.location );
