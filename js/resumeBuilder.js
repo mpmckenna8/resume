@@ -124,13 +124,22 @@ var projects = {projects:[],
   init:function(){
 
 // showing the constructor function for projects if i want to use it
-// function Project(title, dates, description, url, images) { ... }
+// function Project(title, dates, description, url, [images]) { ... }
+
+  let sfbos_map = new Project( "San Francisco Board of Supervisors districts Map", '2020',
+    "Remake of a map I did using older non-webgl mapping tech with updated information as to the current supervisors.",
+    "https://mpmckenna8.github.io/sfviz/sfbos/", 
+    [{"url": "images/sfbos.jpg"}])
+
+  projects.projects.push(sfbos_map)
+
 
   let sfpdmap = new Project( "SFPD incidents 3d Hex map", "2019-Present", 
   "Using deck.gl (a fancy Uber made data viz library) to create a heatmap of SFPD Incident reports.",
   "https://mpmckenna8.github.io/sfviz/?start_date=2020-05-01&end_date=2020-05-31", 
   [{"url":"images/sfpd_crimes.jpg"}])
 
+  
   projects.projects.push( sfpdmap )
 
 
